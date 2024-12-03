@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'quiz_screen.dart';
+import 'package:hw05/quiz_screen.dart';
+import 'package:hw05/setup_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,7 +12,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Trivia Quiz App',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: QuizScreen(),
+      home: SetupScreen(),
+      routes: {
+        '/quiz' : (context) => QuizScreen(),
+      }
     );
   }
 }
