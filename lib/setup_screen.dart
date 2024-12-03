@@ -42,8 +42,8 @@ void _startQuiz(context){
 
 class SetupScreenState extends State<SetupScreen> {
   NumberOfQuestions? selectedNumber;
-  String? selectedDifficulty;
-  String? selectedType;
+  Difficulty? selectedDifficulty;
+  Type? selectedType;
   
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,8 @@ class SetupScreenState extends State<SetupScreen> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             DropdownMenu<NumberOfQuestions>(
               initialSelection: NumberOfQuestions.ten,
@@ -71,18 +72,19 @@ class SetupScreenState extends State<SetupScreen> {
                 }
               ).toList(),
             ),
-            DropdownMenu<NumberOfQuestions>(
-              initialSelection: NumberOfQuestions.ten,
-              label: const Text('Number of Questions'),
-              onSelected: (NumberOfQuestions? selected) {
+            SizedBox(height: 16,),
+            DropdownMenu<Difficulty>(
+              initialSelection: Difficulty.any,
+              label: const Text('Difficulty'),
+              onSelected: (Difficulty? selected) {
                 setState(() {
-                  selectedNumber = selected;
+                  selectedDifficulty = selected;
                 });
               },
-              dropdownMenuEntries: NumberOfQuestions.values.map<DropdownMenuEntry<NumberOfQuestions>>(
-                (NumberOfQuestions numQuestions) {
-                  return DropdownMenuEntry<NumberOfQuestions>(
-                    value: numQuestions, label: numQuestions.label
+              dropdownMenuEntries: Difficulty.values.map<DropdownMenuEntry<Difficulty>>(
+                (Difficulty difficulty) {
+                  return DropdownMenuEntry<Difficulty>(
+                    value: difficulty, label: difficulty.label
                   );
                 }
               ).toList(),
